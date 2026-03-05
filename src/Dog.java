@@ -45,6 +45,9 @@ public class Dog {
     }
 
     public boolean setOwner(Owner newOwner) {
+        if (this.owner == newOwner) {
+            return false;
+        }
         if (newOwner == null) {
 
             if (this.owner == null) {
@@ -59,15 +62,11 @@ public class Dog {
             return false;
         }
         if (this.owner != null) {
-            if (this.owner == newOwner) {
-
-                if (!newOwner.ownsDog(this)) {
-                    newOwner.addDog(this);
-
-                }
+            if (this.owner == newOwner && !newOwner.ownsDog(this)) {
+                newOwner.addDog(this);
                 return true;
-            }
 
+            }
             Owner oldOwner = this.owner;
             this.owner = null;
             oldOwner.removeDog(this);
@@ -81,33 +80,6 @@ public class Dog {
         return true;
 
     }
-
-    /*
-
-    public boolean setOwner(Owner newOwner){
-        if (newOwner == owner) {
-            return false;
-        }
-
-        Owner old = this.owner;
-
-        if(old != null){
-            old.removeDog(this);
-        }
-
-        this.owner = newOwner;
-
-        if(newOwner != null) {
-            newOwner.addDog(this);
-
-        }
-        return true;
-    }
-
-    public void setOwnerInternal(Owner owner){
-        this.owner = owner;
-    }
-     */
 
     public double getTailLength() {
 

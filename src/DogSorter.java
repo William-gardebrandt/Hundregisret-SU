@@ -62,6 +62,4 @@ public class DogSorter {
             dogs[j + 1] = key;
         }
     }
-
-
 }

@@ -39,7 +39,7 @@ public class Owner {
     }
 
     public boolean addDog(Dog newDog) {
-        if(newDog == null){
+        if (newDog == null) {
             return false;
         }
 
@@ -52,10 +52,9 @@ public class Owner {
         if (newDog.getOwner() != this) {
             return newDog.setOwner(this);
         }
-        if(ownsDog(newDog)){
+        if (ownsDog(newDog)) {
             return false;
         }
-
 
 
         for (int i = 0; i < dogs.length; i++) {
@@ -69,24 +68,6 @@ public class Owner {
         return false;
     }
 
-    /*
-    public boolean addDog(Dog newDog) {
-        if (newDog == null || ownsDog(newDog) || numOfDogs >= MAXDOGS || ownsDog(newDog.getName())) {
-            return false;
-        }
-
-        if (newDog.getOwner() == this) {
-            if (ownsDog(newDog)) {
-                return false;
-            }
-
-            dogs[numOfDogs] = newDog;
-            numOfDogs++;
-            return true;
-        }
-        return newDog.setOwner(this);
-    }
-    */
     public boolean removeDog(Dog dog) {
         if (dog == null) return false;
 
@@ -108,37 +89,12 @@ public class Owner {
 
         return false;
     }
+
     public boolean removeDog(String name) {
         Dog dog = findDogByName(name);
         if (dog == null) return false;
         return removeDog(dog);
     }
-
-    /*
-
-    public boolean removeDog(String name) {
-        if (name == null) {
-            return false;
-        }
-        for (int i = 0; i < numOfDogs; i++) {
-            if (dogs[i].getName().equalsIgnoreCase(name)) {
-
-                dogs[i].setOwnerInternal(null); // KANSKE BARA GÖRA SÅ ATT DOGS[i].SETOWNER KAN TALL NULL VÄRDE?? VAD HÄNDER DÅ???
-                dogs[i] = null;
-                normalizeDogs();
-                numOfDogs--;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // Man kasnke inte ak ha en moetd för att remove dog by anme?
-    public boolean removeDog(Dog dog) {
-        return removeDog(dog.getName());
-    }
-    */
 
     public boolean ownsAnyDog() {
         if (numOfDogs > 0) {
@@ -195,7 +151,7 @@ public class Owner {
                     dogsCopy
             );
         }
-        return dogsCopy; // retunerar en doglista sorterad --- detta är en lösning till getdogs metoden
+        return dogsCopy;
     }
 
 
@@ -215,7 +171,7 @@ public class Owner {
     }
 
     private Dog findDogByName(String name) {
-        if(name == null){
+        if (name == null) {
             return null;
         }
 
@@ -228,6 +184,3 @@ public class Owner {
     }
 
 }
-
-
-
