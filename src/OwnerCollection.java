@@ -71,15 +71,15 @@ public class OwnerCollection {
 
     public ArrayList<Owner> getAllOwners(){
 
-        ArrayList<Owner> list = new ArrayList<>();
+        ArrayList<Owner> OwnerCopyList = new ArrayList<>();
         for(int i = 0; i < ownerList.size(); i++){
-            list.add(ownerList.get(i));
+            OwnerCopyList.add(ownerList.get(i));
 
 
         }
-        list.sort(Comparator.comparing(Owner::getName));
+        OwnerCopyList.sort(Comparator.comparing(Owner::getName));
 
-        return list;
+        return OwnerCopyList;
     }
 
     public int size(){

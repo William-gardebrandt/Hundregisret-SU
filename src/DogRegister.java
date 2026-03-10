@@ -165,10 +165,10 @@ public class DogRegister {
             System.out.print("error");
             return;
         }
-        String dogNameCo = input.useString(ENTER_DOG);
+        String dogName = input.useString(ENTER_DOG);
         Dog dogToRemove = null;
         for (Dog dog : owner.getDogs()) {
-            if (dog.getName().equalsIgnoreCase(dogNameCo)) {
+            if (dog.getName().equalsIgnoreCase(dogName)) {
                 dogToRemove = dog;
             }
         }
@@ -219,16 +219,13 @@ public class DogRegister {
         list.sort(new TailNameComparator());
 
         for (Dog dog : list) {
-            System.out.println(dog.getName() + " " +
-                    String.format("%.1f", dog.getTailLength()) + "/" +
+            System.out.println(dog.getName() + " - " + dog.getTailLength() + "/" +
                     dog.getOwner().getName());
         }
     }
 
     private void increaseAge() {
-
         for (Owner owner : owners.getAllOwners()) {
-            //if (owner.ownsAnyDog()) {}
             for (Dog dog : owner.getDogs()) {
                 dog.increaseAgeOfDog();
             }

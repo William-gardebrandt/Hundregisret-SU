@@ -53,9 +53,7 @@ public class Dog {
             if (this.owner == null) {
                 return false;
             }
-            Owner oldOwner = this.owner;
-            this.owner = null;
-            oldOwner.removeDog(this);
+            changeOwner();
             return true;
         }
         if (newOwner.ownsMaxDogs()) {
@@ -67,9 +65,7 @@ public class Dog {
                 return true;
 
             }
-            Owner oldOwner = this.owner;
-            this.owner = null;
-            oldOwner.removeDog(this);
+            changeOwner();
         }
 
         this.owner = newOwner;
@@ -79,6 +75,12 @@ public class Dog {
         }
         return true;
 
+    }
+
+    private void changeOwner() {
+        Owner oldOwner = this.owner;
+        this.owner = null;
+        oldOwner.removeDog(this);
     }
 
     public double getTailLength() {
@@ -103,7 +105,7 @@ public class Dog {
                         name + "\nBreed: " +
                         breed + "\nAge: " +
                         age + "\nWeight: " +
-                        weight + "\nTaillength: " + getTailLength() + "\n" +
+                        weight + "\nTaillength: " + getTailLength() + "\n" + "Owner: " +
                         owner;
     }
 }

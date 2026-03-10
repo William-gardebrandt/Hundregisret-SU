@@ -31,7 +31,6 @@ public class DogSorter {
         boolean swapped;
 
         for (int i = 0; i < length - 1; i++) {
-
             swapped = false;
             for (int j = 0; j < length - 1 - i; j++) {
                 if (comp.compare(dogs[j], dogs[j + 1]) > 0) {
@@ -47,6 +46,7 @@ public class DogSorter {
             }
         }
     }
+
 
     private static void insertionSort(Dog[] dogs, Comparator<Dog> comp) {
         int length = dogs.length;
