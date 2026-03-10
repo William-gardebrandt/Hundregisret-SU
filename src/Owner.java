@@ -39,23 +39,16 @@ public class Owner {
     }
 
     public boolean addDog(Dog newDog) {
-        if (newDog == null) {
+        if (newDog == null || numOfDogs >= MAXDOGS || ownsDog(newDog.getName())) {
             return false;
         }
 
-        if (numOfDogs >= MAXDOGS) {
-            return false;
-        }
-        if (ownsDog(newDog.getName())) {
-            return false;
-        }
         if (newDog.getOwner() != this) {
             return newDog.setOwner(this);
         }
         if (ownsDog(newDog)) {
             return false;
         }
-
 
         for (int i = 0; i < dogs.length; i++) {
             if (dogs[i] == null) {
@@ -70,14 +63,10 @@ public class Owner {
 
     public boolean removeDog(Dog dog) {
         if (dog == null) return false;
-
-        // Är hundens ägare?
         if (dog.getOwner() == this) {
-            // Anropa setOwner (ta bort ägare)
             return dog.setOwner(null);
         }
 
-        // Äger hunden? (finns den i min lista även om owner inte pekar på mig)
         for (int i = 0; i < dogs.length; i++) {
             if (dogs[i] == dog) {
                 dogs[i] = null;
@@ -86,7 +75,6 @@ public class Owner {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -100,7 +88,6 @@ public class Owner {
         if (numOfDogs > 0) {
             return true;
         }
-
         return false;
 
     }
@@ -109,7 +96,6 @@ public class Owner {
         if (numOfDogs == MAXDOGS) {
             return true;
         }
-
         return false;
     }
 

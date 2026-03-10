@@ -28,25 +28,17 @@ public class DogSorter {
 
     private static void bubbleSort(Dog[] dogs, Comparator<Dog> comp) {
         int length = dogs.length;
-        boolean swapped;
 
-        for (int i = 0; i < length - 1; i++) {
-            swapped = false;
-            for (int j = 0; j < length - 1 - i; j++) {
-                if (comp.compare(dogs[j], dogs[j + 1]) > 0) {
-                    Dog temp = dogs[j];
+        for (int j = 0; j < length - 1; j++) {
+            if (comp.compare(dogs[j], dogs[j + 1]) > 0) {
+                Dog temp = dogs[j];
 
-                    dogs[j] = dogs[j + 1];
-                    dogs[j + 1] = temp;
-                    swapped = true;
-                }
-            }
-            if (!swapped) {
-                break;
+                dogs[j] = dogs[j + 1];
+                dogs[j + 1] = temp;
+
             }
         }
     }
-
 
     private static void insertionSort(Dog[] dogs, Comparator<Dog> comp) {
         int length = dogs.length;

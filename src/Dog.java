@@ -49,7 +49,6 @@ public class Dog {
             return false;
         }
         if (newOwner == null) {
-
             if (this.owner == null) {
                 return false;
             }
@@ -67,9 +66,7 @@ public class Dog {
             }
             changeOwner();
         }
-
         this.owner = newOwner;
-
         if (!newOwner.ownsDog(this)) {
             newOwner.addDog(this);
         }
@@ -84,7 +81,6 @@ public class Dog {
     }
 
     public double getTailLength() {
-
         if (DACHSHUND_LIST.contains(breed)) {
             return DACHSHUND_TAIL_LENGTH;
         } else {
@@ -96,16 +92,14 @@ public class Dog {
         if (age < Integer.MAX_VALUE) {
             age++;
         }
-
     }
 
     public String toString() {
-        return
-                "Dog" + "\n-------" + "\nName: " +
-                        name + "\nBreed: " +
-                        breed + "\nAge: " +
-                        age + "\nWeight: " +
-                        weight + "\nTaillength: " + getTailLength() + "\n" + "Owner: " +
-                        owner;
+        return "Dog" + "\n-------" + "\nName: " +
+                name + "\nBreed: " +
+                breed + "\nAge: " +
+                age + "\nWeight: " +
+                weight + "\nTaillength: " + getTailLength() + "\n" + "Owner: " +
+                owner;
     }
 }

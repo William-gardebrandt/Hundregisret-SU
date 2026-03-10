@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class DogRegister {
     private static final String ENTER_OWNER = "Enter owner's name";
     private static final String ENTER_DOG = "Enter dog's name";
-    private static final String AO = "Add owner";
-    private static final String RO = "Remove Owner";
-    private static final String AD = "Add dog";
-    private static final String RD = "Remove dog";
-    private static final String CO = "Change owner";
-    private static final String LO = "List owners";
-    private static final String LD = "List dogs";
-    private static final String IA = "Increase age";
-    private static final String EX = "Exit";
+    private static final String AO = "ADD OWNER";
+    private static final String RO = "REMOVE OWNER";
+    private static final String AD = "ADD DOG";
+    private static final String RD = "REMOVE DOG";
+    private static final String CO = "CHANGE OWNER";
+    private static final String LO = "LIST OWNERS";
+    private static final String LD = "LIST DOGS";
+    private static final String IA = "INCREASE AGE";
+    private static final String EX = "EXIT";
     private static final String MENU = AO + "\n" + RO + "\n" + AD + "\n" + RD + "\n" + CO + "\n" + LO + "\n" + LD + "\n" + IA
             + "\n" + EX + "\n";
 
@@ -38,48 +38,35 @@ public class DogRegister {
             command = command.trim().toUpperCase();
 
             switch (command) {
-                case "ADD OWNER":
+                case AO:
                     addOwner();
                     break;
-
-                case "REMOVE OWNER":
+                case RO:
                     removeOwner();
                     break;
-
-                case "ADD DOG":
+                case AD:
                     addDog();
                     break;
-
-
-                case "REMOVE DOG":
+                case RD:
                     removeDog();
                     break;
-
-
-                case "CHANGE OWNER":
+                case CO:
                     changeOwner();
                     break;
-
-
-                case "LIST OWNERS":
+                case LO:
                     listOwners();
                     break;
-
-                case "LIST DOGS":
+                case LD:
                     listDogs();
                     break;
-
-                case "INCREASE AGE":
+                case IA:
                     increaseAge();
                     break;
-
-                case "EXIT":
+                case EX:
                     System.out.print("System closed");
                     return;
-
                 default:
                     break;
-
             }
         }
     }
@@ -89,10 +76,8 @@ public class DogRegister {
         if (name == null || name.isBlank()) {
             return;
         }
-
         Owner owner = new Owner(name);
         owners.addOwner(owner);
-
     }
 
     private void removeOwner() {
@@ -101,14 +86,12 @@ public class DogRegister {
         if (ownerName == null || ownerName.isBlank()) {
             return;
         }
-
         if (owner.ownsAnyDog()) {
             System.out.print("Owner still owns dogs");
             return;
         }
         owners.removeOwner(owner);
     }
-
 
     private void addDog() {
         String dogOwnerName = input.useString(ENTER_OWNER);
@@ -120,12 +103,10 @@ public class DogRegister {
             System.out.print("owner could not be found");
             return;
         }
-
         if (owner.ownsMaxDogs()) {
             System.out.print("error, owner has maxdogs");
             return;
         }
-
         String dogName = input.useString(ENTER_DOG);
         String dogBreed = input.useString("Enter dog breed");
         int dogAge = input.useInt("Enter dog age");
@@ -137,14 +118,11 @@ public class DogRegister {
 
 
     private void removeDog() {
-
         String ownerName = input.useString(ENTER_OWNER);
         Owner owner = owners.getOwner(ownerName);
         if (owner == null || ownerName.isBlank()) {
             return;
         }
-
-
         String dogName = input.useString(ENTER_DOG);
 
         if (dogName.isBlank() || dogName == null) {
@@ -191,37 +169,35 @@ public class DogRegister {
         for (int i = 0; i < list.size(); i++) {
             Owner ownerList = list.get(i);
             System.out.print(ownerList);
-
-
         }
     }
 
     private void listDogs() {
         double minTailLength = input.useDouble("Enter lowest tail-length");
-        boolean found = false;
-
         ArrayList<Dog> list = new ArrayList<>();
-
-        for (Owner owner : owners.getAllOwners()) {
-            for (Dog dog : owner.getDogs()) {
-                if (dog.getTailLength() >= minTailLength) {
-                    list.add(dog);
-                    found = true;
-                }
+        for (Dog dog : getAllDogs()) {
+            if (dog.getTailLength() >= minTailLength) {
+                list.add(dog);
             }
         }
-
-        if (!found) {
+        if (list.isEmpty()) {
             System.out.println("error, no dogs with bigger tails");
             return;
         }
-
         list.sort(new TailNameComparator());
-
         for (Dog dog : list) {
-            System.out.println(dog.getName() + " - " + dog.getTailLength() + "/" +
-                    dog.getOwner().getName());
+            System.out.println(dog.getName() + " - " + dog.getTailLength() + "/" + dog.getOwner().getName());
         }
+    }
+
+    private ArrayList<Dog> getAllDogs() {
+        ArrayList<Dog> allDogs = new ArrayList<>();
+        for (Owner owner : owners.getAllOwners()) {
+            for (Dog dog : owner.getDogs()) {
+                allDogs.add(dog);
+            }
+        }
+        return allDogs;
     }
 
     private void increaseAge() {
@@ -229,8 +205,6 @@ public class DogRegister {
             for (Dog dog : owner.getDogs()) {
                 dog.increaseAgeOfDog();
             }
-
         }
-
     }
 }
