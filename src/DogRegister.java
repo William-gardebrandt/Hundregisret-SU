@@ -164,11 +164,9 @@ public class DogRegister {
             System.out.print("error there are no owners");
             return;
         }
-        ArrayList<Owner> list = owners.getAllOwners();
 
-        for (int i = 0; i < list.size(); i++) {
-            Owner ownerList = list.get(i);
-            System.out.print(ownerList);
+        for(Owner owner : owners.getAllOwners()){
+            System.out.println(owner);
         }
     }
 
